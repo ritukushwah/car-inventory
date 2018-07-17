@@ -132,5 +132,12 @@ class Manufacture_model extends CI_Model {
             return false;
         }   
     }
+	
+    function getId($table,$where){
+        $this->db->select('modelId');
+        $this->db->where($where);
+        $q = $this->db->get($table);
+        return $q->result();
+    }
     
 }

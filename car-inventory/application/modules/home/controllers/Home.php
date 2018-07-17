@@ -113,11 +113,12 @@ class Home extends CI_Controller {
 
     }
 
-    function updateCount(){
+     function updateCount(){
 
         $this->load->model('Manufacture_model');
         $modelName = $this->input->post('name');
-        $isDelete = $this->Manufacture_model->deleteData('model',array('modelName'=>$modelName));
+        $count = $this->Manufacture_model->getId('model',array('modelName'=>$modelName));
+        $isDelete = $this->Manufacture_model->deleteData('model',array('modelId'=>$count[0]->modelId));
         if(!$isDelete){
             $response = array('status' => 0, 'message' => 'Something went wrong'); //success msg
         }
@@ -125,6 +126,7 @@ class Home extends CI_Controller {
         echo json_encode($response);   
 
     }
+
 
 
 } //End class
